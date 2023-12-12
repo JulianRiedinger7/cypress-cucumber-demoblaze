@@ -1,3 +1,4 @@
+@regression @smoke
 Feature: Check Carousel items
 
   As a user i should be able to see the carousel items correctly displayed
