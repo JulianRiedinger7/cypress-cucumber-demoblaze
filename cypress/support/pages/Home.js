@@ -8,7 +8,8 @@ class Home {
     aboutUsLink: () => cy.get("[data-target='#videoModal']"),
     cartLink: () => cy.get("#cartur"),
     loginLink: () => cy.get("#login2"),
-    signUpLink: () => cy.get("#signin2")
+    signUpLink: () => cy.get("#signin2"),
+    categoryItems: () => cy.get(".card")
   }
 
   visit() {
@@ -41,6 +42,14 @@ class Home {
 
   nextCarouselItem() {
     this.elements.carouselBtn().click()
+  }
+
+  clickCategory(name) {
+    cy.contains(name).click()
+  }
+
+  getCategoryItems() {
+    return this.elements.categoryItems()
   }
 }
 
