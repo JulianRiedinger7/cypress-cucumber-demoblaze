@@ -9,7 +9,9 @@ class Home {
     cartLink: () => cy.get("#cartur"),
     loginLink: () => cy.get("#login2"),
     signUpLink: () => cy.get("#signin2"),
-    categoryItems: () => cy.get(".card")
+    categoryItems: () => cy.get(".card"),
+    productTitle: () => cy.get(".card-title a"),
+    productPrice: () => cy.get(".card-block h5")
   }
 
   visit() {
@@ -50,6 +52,18 @@ class Home {
 
   getCategoryItems() {
     return this.elements.categoryItems()
+  }
+
+  getProductTitle(index) {
+    return this.elements.productTitle().eq(index)
+  }
+
+  getProductPrice(index) {
+    return this.elements.productPrice().eq(index)
+  }
+ 
+  clickProduct(index) {
+    this.elements.productTitle().eq(index).click()
   }
 }
 
