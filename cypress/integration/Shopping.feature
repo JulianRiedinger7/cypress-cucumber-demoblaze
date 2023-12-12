@@ -17,3 +17,8 @@ Feature: Check Shopping functionality
             | Laptops  | 6        |
             | Monitors | 2        |
 
+    Scenario: Check product details correctly displayed
+        When I click on any product item
+        Then I should navigate to the product details
+        And I should be able to see product information
+
