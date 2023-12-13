@@ -22,3 +22,11 @@ Feature: Check Shopping functionality
         Then I should navigate to the product details
         And I should be able to see product information
 
+    Scenario: Check product correctly added to cart
+        When I click on any product item
+        And I click on the add to cart button
+        Then I should see the "Product added" alert
+        When I accept the alert
+        And I navigate to the cart section
+        Then I should be able to see the product added in the cart
+
