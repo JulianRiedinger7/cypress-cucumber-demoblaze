@@ -1,4 +1,4 @@
-@regression
+@shopping @regression
 Feature: Check Shopping functionality
 
     As a user i should be able to change between categories, buy and remove a product

@@ -1,4 +1,4 @@
-@smoke
+@navigation @smoke
 Feature: Check correct navigation to all header links
 
     As a user i should be able to navigate correctly between different header links
