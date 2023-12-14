@@ -4,7 +4,7 @@ class Home {
     endpoint: () => cy.visit("/"),
     carouselItems: () => cy.get(".carousel-item"),
     carouselBtn: () => cy.get(".carousel-control-next-icon"),
-    contactLink: () => cy.contains("Contact"),
+    contactLink: () => cy.get("a.nav-link").contains("Contact"),
     aboutUsLink: () => cy.get("[data-target='#videoModal']"),
     cartLink: () => cy.get("#cartur"),
     loginLink: () => cy.get("#login2"),
