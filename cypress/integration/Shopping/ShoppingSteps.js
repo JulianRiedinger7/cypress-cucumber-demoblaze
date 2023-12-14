@@ -4,7 +4,9 @@ import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
 import { home } from "../../support/pages/Home";
 import { productDetails } from "../../support/pages/ProductDetails";
 import { cart } from "../../support/pages/Cart";
+import { checkout } from "../../support/pages/Checkout";
 
+let fixtureData;
 let productTitle;
 let productPrice;
 const productToCheck = 1
@@ -100,4 +102,39 @@ Then('I should be able to see the product added in the cart', () => {
     .should("contain.text", productTitle)
   cart.getTablePrice()
     .should("contain.text", formattedProductPrice)
+})
+
+When('I proceed to checkout', () => {
+  cart.placeOrder()
+})
+
+When('I complete the checkout process with valid information', () => {
+  cy.fixture("checkout").then(data => {
+    const {name, country, city, card, month, year} = data
+    fixtureData = data;
+
+    checkout.enterName(name)
+    checkout.enterCountry(country)
+    checkout.enterCity(city)
+    checkout.enterCard(card)
+    checkout.enterMonth(month)
+    checkout.enterYear(year)
+
+    checkout.finishPurchase()
+  })
+})
+
+Then('I should receive a confirmation for my successful purchase', () => {
+  let formattedAmount = productPrice.replace("$", "")
+  formattedAmount = formattedAmount.concat(" USD")
+
+  checkout.getModalTitle()
+    .should("be.visible")
+    .and("contain.text", "Thank you for your purchase!")
+
+  checkout.getModalInfo()
+    .should("be.visible")
+    .and("contain.text", "Name: " + fixtureData.name)
+    .and("contain.text", "Card Number: " + fixtureData.card)
+    .and("contain.text", "Amount: " + formattedAmount)
 })

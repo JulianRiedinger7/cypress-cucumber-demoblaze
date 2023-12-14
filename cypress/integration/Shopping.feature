@@ -30,3 +30,12 @@ Feature: Check Shopping functionality
         And I navigate to the cart section
         Then I should be able to see the product added in the cart
 
+    Scenario: Check succesful purchase of a product
+        When I click on any product item
+        And I click on the add to cart button
+        Then I should see the "Product added" alert
+        When I accept the alert
+        And I navigate to the cart section
+        And I proceed to checkout
+        And I complete the checkout process with valid information
+        Then I should receive a confirmation for my successful purchase
